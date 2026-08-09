@@ -11,11 +11,11 @@
       "hash": "5a305705f84549e50223d897bb95495edd78bf1a"
     },
     "com.unity.2d.animation": {
-      "version": "13.0.2",
+      "version": "13.0.4",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.2d.common": "12.0.1",
+        "com.unity.2d.common": "12.0.2",
         "com.unity.2d.sprite": "1.0.0",
         "com.unity.collections": "2.4.3",
         "com.unity.modules.animation": "1.0.0",
@@ -119,7 +119,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.27",
+      "version": "1.8.28",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -129,7 +129,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
-      "version": "2.10.5",
+      "version": "2.10.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -138,7 +138,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "2.11.2",
+      "version": "2.11.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -182,7 +182,7 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.2d.animation": "13.0.2",
+        "com.unity.2d.animation": "13.0.4",
         "com.unity.2d.pixel-perfect": "5.1.1",
         "com.unity.2d.psdimporter": "12.0.1",
         "com.unity.2d.sprite": "1.0.0",
@@ -198,15 +198,15 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.xr.arfoundation": "6.3.2",
-        "com.unity.xr.arkit": "6.3.2",
-        "com.unity.xr.arcore": "6.3.2",
+        "com.unity.xr.arfoundation": "6.3.3",
+        "com.unity.xr.arkit": "6.3.3",
+        "com.unity.xr.arcore": "6.3.3",
         "com.unity.xr.interaction.toolkit": "3.3.2",
         "com.unity.xr.openxr": "1.16.1"
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.38",
+      "version": "3.0.39",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -231,7 +231,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.18.0",
+      "version": "1.19.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -247,7 +247,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mobile.android-logcat": {
-      "version": "1.4.6",
+      "version": "1.4.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -337,7 +337,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.8.10",
+      "version": "1.8.11",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -358,7 +358,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.9.9",
+      "version": "1.9.10",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -368,20 +368,20 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arcore": {
-      "version": "6.3.2",
+      "version": "6.3.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.xr.core-utils": "2.2.2",
         "com.unity.xr.management": "4.4.0",
-        "com.unity.xr.arfoundation": "6.3.2",
+        "com.unity.xr.arfoundation": "6.3.3",
         "com.unity.modules.androidjni": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arfoundation": {
-      "version": "6.3.2",
+      "version": "6.3.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -399,13 +399,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.arkit": {
-      "version": "6.3.2",
+      "version": "6.3.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.xr.core-utils": "2.2.2",
         "com.unity.xr.management": "4.4.0",
-        "com.unity.xr.arfoundation": "6.3.2",
+        "com.unity.xr.arfoundation": "6.3.3",
         "com.unity.editorcoroutines": "1.0.0"
       },
       "url": "https://packages.unity.com"
