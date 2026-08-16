@@ -20,12 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/_Games/CHIX.unity
     guid: 89ddc37dc528f8a41818d07118349b9f
-  - enabled: 1
-    path: Assets/ScenesAR/MapScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/ScenesAR/ARScene.unity
-    guid: 9adeaa9882f6ce24c88ea11914a2a208
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 8429e7178d2072c408eecd93d627b129,
       type: 2}
@@ -35,7 +29,7 @@ EditorBuildSettings:
       type: 2}
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 7c0e737fa11e02c40a88e4915f9b5c1a,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0b7eb4a4858f8144d8effe4867d0cf9f,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0f79e0a0a1bee6d4cab2a52f7ae24269,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: ef7de2e3bfa366f479059bc0f4ddf319,
       type: 2}
