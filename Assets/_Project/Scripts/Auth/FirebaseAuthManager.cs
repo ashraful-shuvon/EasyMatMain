@@ -115,6 +115,16 @@ public class FirebaseAuthManager : MonoBehaviour
     // panel. Returning from a game skips the splash entirely.
     public static bool SplashGatePending = true;
 
+    // Set true once the startup flow has decided where the user lands (homepage
+    // or login). SplashScreenAnimator watches this to know when the backend
+    // check behind the loading screen is done.
+    public static bool StartupResolved = false;
+
+    void MarkStartupResolved()
+    {
+        StartupResolved = true;
+    }
+
     void Start()
     {
         if (SplashGatePending && !returningFromGame)
@@ -133,20 +143,17 @@ public class FirebaseAuthManager : MonoBehaviour
     public void RunStartupFlow()
     {
         SplashGatePending = false;
+        StartupResolved = false;
 
         bool panelRouterHandling = FirebaseAuthManager.returningFromGame;
         FirebaseAuthManager.returningFromGame = false; // reset after reading
 
-        if (!panelRouterHandling)
-        {
-            ShowPanel("login");
-        }
-        else
-        {
-            if (loginPanel) loginPanel.SetActive(false);
-            if (registerPanel) registerPanel.SetActive(false);
-            if (homepagePanel) homepagePanel.SetActive(false);
-        }
+        // Keep every panel hidden while verification runs behind the loading
+        // screen. The correct panel (homepage or login) is switched on below,
+        // once we know the outcome — and only then does the loading screen lift.
+        if (loginPanel) loginPanel.SetActive(false);
+        if (registerPanel) registerPanel.SetActive(false);
+        if (homepagePanel) homepagePanel.SetActive(false);
 
         SetLoginConfirmInteractable(false);
         SetRegisterConfirmInteractable(false);
@@ -173,6 +180,7 @@ public class FirebaseAuthManager : MonoBehaviour
                 ShowPanel("homepage");
                 StartCoroutine(LoadUserDataSilentlyDelayed());
             }
+            MarkStartupResolved();
             return;
         }
 
@@ -209,6 +217,8 @@ public class FirebaseAuthManager : MonoBehaviour
                 LoadUserDataSilently(result);
             else
                 LoadUserDataAndShowHomepage(result);
+
+            MarkStartupResolved();
         },
         error =>
         {
@@ -217,6 +227,8 @@ public class FirebaseAuthManager : MonoBehaviour
             SetRegisterConfirmInteractable(true);
             Debug.Log("ℹ️ No saved device session (" + error.Error + ") — showing login.");
             SetLoginStatus("Please login or register.");
+            ShowPanel("login");
+            MarkStartupResolved();
         });
     }
 

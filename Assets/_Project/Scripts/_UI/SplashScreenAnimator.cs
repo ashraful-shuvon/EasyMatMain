@@ -37,6 +37,8 @@ public class SplashScreenAnimator : MonoBehaviour
     public GameObject loadingPanel;
     [Tooltip("Minimum seconds the loading panel stays up, even if auth resolves faster.")]
     public float loadingMinSeconds = 2f;
+    [Tooltip("Safety cap: hide the loading panel after this long even if auth never reports back.")]
+    public float loadingMaxSeconds = 15f;
     [Tooltip("Seconds to hold the finished splash before switching to loading.")]
     public float holdBeforeLoading = 0.4f;
     [Tooltip("Auth manager that owns Login / Register / Home. Falls back to FirebaseAuthManager.Instance.")]
@@ -111,13 +113,33 @@ public class SplashScreenAnimator : MonoBehaviour
         cg.blocksRaycasts = false;
         cg.interactable = false;
 
-        yield return new WaitForSeconds(Mathf.Max(0f, loadingMinSeconds));
-
+        // Start the auth / backend check now — it runs behind the loading screen.
         FirebaseAuthManager auth = authManager != null ? authManager : FirebaseAuthManager.Instance;
         if (auth != null)
+        {
+            FirebaseAuthManager.StartupResolved = false;
             auth.RunStartupFlow();
+        }
         else
+        {
             Debug.LogWarning("SplashScreenAnimator: no FirebaseAuthManager to hand off to.");
+            FirebaseAuthManager.StartupResolved = true;
+        }
+
+        // Hold the loading screen until: the min time has passed AND the backend
+        // check has resolved (logged in -> home is already swapped underneath, or
+        // not logged in -> login panel is showing underneath). Bail out after the
+        // safety cap so a stalled request can never freeze the loading screen.
+        float elapsed = 0f;
+        float cap = Mathf.Max(loadingMinSeconds, loadingMaxSeconds);
+        while (elapsed < cap)
+        {
+            bool minDone = elapsed >= loadingMinSeconds;
+            if (minDone && FirebaseAuthManager.StartupResolved)
+                break;
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
 
         if (loadingPanel != null)
             loadingPanel.SetActive(false);
