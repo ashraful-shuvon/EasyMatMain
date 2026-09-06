@@ -110,8 +110,30 @@ public class FirebaseAuthManager : MonoBehaviour
     }
 
     // ── START ──────────────────────────────────────────────────────
+    // The splash + loading sequence (SplashScreenAnimator) runs on every app
+    // open and calls RunStartupFlow() when it's done. Until then we show no
+    // panel. Returning from a game skips the splash entirely.
+    public static bool SplashGatePending = true;
+
     void Start()
     {
+        if (SplashGatePending && !returningFromGame)
+        {
+            if (loginPanel) loginPanel.SetActive(false);
+            if (registerPanel) registerPanel.SetActive(false);
+            if (homepagePanel) homepagePanel.SetActive(false);
+            SetLoginConfirmInteractable(false);
+            SetRegisterConfirmInteractable(false);
+            return;
+        }
+
+        RunStartupFlow();
+    }
+
+    public void RunStartupFlow()
+    {
+        SplashGatePending = false;
+
         bool panelRouterHandling = FirebaseAuthManager.returningFromGame;
         FirebaseAuthManager.returningFromGame = false; // reset after reading
 
